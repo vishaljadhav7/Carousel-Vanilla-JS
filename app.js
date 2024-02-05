@@ -1,42 +1,60 @@
-const carouselSlide = document.querySelector('.carousel-slide');
-const carouselImages = document.querySelectorAll('.carousel-slide img');
-//Buttons
-const previousBtn = document.querySelector('#previousBtn');
-const nextBtn = document.querySelector('#nextBtn');
-//Counter
-let counter = 1;
-const size = carouselImages[0].clientWidth;
+const slides = document.querySelectorAll('.slide');
+let counter = 0;
+// console.log(slides);
 
+slides.forEach(
+    (slide,index) => {
+        slide.style.left = `${index * 100}%`;
+    }
+)
 
-carouselSlide.style.transform = 'translateX(' + (-size*counter) + 'px)';
-
-nextBtn.addEventListener('click',()=>{
-    if(counter >= carouselImages.length - 1) return;
-    carouselSlide.style.transition = 'transform 0.2s ease-in-out';
-    counter++;
-    carouselSlide.style.transform = 'translateX(' + (-size*counter) + 'px)';
-});
-
-previousBtn.addEventListener('click',()=>{
-    if(counter <= 0) return;
-    carouselSlide.style.transition = 'transform 0.2s ease-in-out';
+const Prev = ( ) =>{
     counter--;
-    carouselSlide.style.transform = 'translateX(' + (-size*counter) + 'px)';
-});
+    slideImage();
+}
+
+const Next = ( ) =>{
+    counter++;
+    slideImage();
+}
 
 
-carouselSlide.addEventListener('transitionend',()=>{
-    if(carouselImages[counter].id === 'lastClone'){
-        carouselSlide.style.transition = 'none';
-        counter = carouselImages.length -2;
-        carouselSlide.style.transform = 'translateX(' + (-size*counter) + 'px)';
+
+const slideImage = ( ) =>{
+    slides.forEach(
+        (slide)=>{
+            slide.style.transform = `translateX(-${counter*100}%)`;
+        }  
+    )
+}
+
+const slides = document.querySelectorAll('.slide');
+let counter = 0;
+// console.log(slides);
+
+slides.forEach(
+    (slide,index) => {
+        slide.style.left = `${index * 100}%`;
     }
-    if(carouselImages[counter].id === 'firstClone'){
-        carouselSlide.style.transition = 'none';
-        counter = carouselImages.length - counter;
-        carouselSlide.style.transform = 'translateX(' + (-size*counter) + 'px)';
+)
 
-    }
-});
+const Prev = ( ) =>{
+    counter--;
+    slideImage();
+}
 
-console.log(carouselImages.length);
+const Next = ( ) =>{
+    counter++;
+    slideImage();
+}
+
+
+
+const slideImage = ( ) =>{
+    slides.forEach(
+        (slide)=>{
+            slide.style.transform = `translateX(-${counter*100}%)`;
+        }  
+    )
+}
+
